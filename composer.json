@@ -1,0 +1,25 @@
+{
+    "name":         "nulpunkt/behat-mink-browserstack",
+    "description":  "A Browserstack aware feature context for Behat",
+    "keywords":     ["selenium", "webdriver", "javascript", "ajax", "testing", "browser"],
+    "license":      "MIT",
+
+    "authors": [
+        {
+            "name":      "Jesper Skovgaard Nielsen",
+            "email":     "jesper@runlevel0.dk",
+            "homepage":  "https://github.com/nulpunkt"
+        }
+    ],
+
+    "require": {
+        "php":                       ">=5.3.1",
+        "behat/mink-selenium2-driver":  "1.0.*"
+    },
+
+    "autoload": {
+        "psr-0": {
+            "Nulpunkt\\BrowserstackFeatureContext": "src/"
+        }
+    }
+}
