@@ -2,11 +2,12 @@
 
 namespace Nulpunkt;
 
-use Behat\Mink\Mink;
-use Behat\Mink\Session;
-use Behat\Mink\Driver\Selenium2Driver;
+use \Behat\Mink\Mink;
+use \Behat\Mink\Session;
+use \Behat\Mink\Driver\Selenium2Driver;
+use \Behat\MinkExtension\Context\MinkContext;
 
-class BrowserstackFeatureContext extends Behat\MinkExtension\Context\MinkContext
+class BrowserstackFeatureContext extends MinkContext
 {
     public function __construct($params)
     {
