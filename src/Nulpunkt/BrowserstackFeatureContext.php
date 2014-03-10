@@ -9,13 +9,19 @@ use \Behat\MinkExtension\Context\MinkContext;
 
 class BrowserstackFeatureContext extends MinkContext
 {
+    private static $driver = null;
+
     public function __construct($params)
     {
         $this->setBrowserstackParams($params);
-
         $host = "http://{$this->browserstack_username}:{$this->browserstack_password}@hub.browserstack.com/wd/hub";
+
+        if (self::$driver === null) {
+            self::$driver = new Selenium2Driver('', $this->capabilities, $host);
+        }
+
         $mink = new Mink(array(
-            'selenium2' => new Session(new Selenium2Driver('', $this->capabilities, $host)),
+            'selenium2' => new Session(self::$driver),
         ));
 
         $mink->setDefaultSessionName('selenium2');
@@ -36,4 +42,13 @@ class BrowserstackFeatureContext extends MinkContext
         $this->browserstack_password = $params['password'];
         $this->capabilities = isset($params['capabilities']) ? $params['capabilities'] : null;
     }
+
+    /**
+     * @AfterScenario
+     */
+    public function after($event)
+    {
+        self::$driver->reset();
+    }
+
 }
